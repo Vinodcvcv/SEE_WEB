@@ -1,0 +1,234 @@
+body{
+    background-color: rgb(255, 255, 255);
+    
+    /*background-image: url('imgs/bg.png');*/
+    font-family: Arial, sans-serif;
+    margin: 0;  
+    padding: 20px;
+    color: #333;
+}
+header {
+    background-color: #ff6a2a;
+    color: rgb(0, 0, 0);
+    padding: 10px 0;
+    text-align: center;
+    border-radius: 3vh;
+}
+form{
+    text-align: center;
+    color:#0033ff;
+    display: grid;
+    justify-content: stretch;
+    position: absolute;
+    top:50%;
+    left: 50%;
+    width:20vw;
+    border-radius: 3vh;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    padding: 20px;
+    border: 2px solid #ff6a2a;
+    background-color: #ff6a2a;
+    height: 20vw;
+    transform: translate(-50%,-50%);
+}
+form input{
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    text-align: center;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+form div{
+    color: white;
+    font-size: small;}
+form div strong{
+    color: #0033ff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+form input[type="button"]{
+    background-color: #0033ff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+form input[type="button"]:hover{
+    background-color: #001aff;
+}
+form input:hover{
+    box-shadow: 0 4px 8px rgb(33, 33, 39);
+    transform: scale(1.05);
+}
+footer{
+    display: block;
+    position: fixed;
+    padding: 0px 20px;
+    border-radius: 3vh;
+    bottom: 0;
+    background-color: #ff6a2a;
+    left:50%;
+    transform: translate(-50%,0);
+}
+@media only screen and (max-width: 1000px) {
+  form{
+    width: 70vw;
+    height: 70vw;
+  }
+}
+main{
+    padding: 20px;
+    background-color: #333;
+    color: white;
+    z-index: -1;
+    border-radius: 3vh;
+    transition: all 2s ease-in-out;
+}
+#logo{
+    background-color: #0033ff;
+    width:fit-content;
+    border-radius: 3vh;
+    padding: 10px;
+    float:right;
+    z-index: 10000;
+    color:white;
+}
+#logo strong{
+    color: #ff6a2a;
+}
+main input#search{
+    width: 50%;
+    padding: 10px;
+    margin: 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+}
+nav button{
+    background-color: #ff6a2a;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#vis{
+    flex-direction:column;
+    width: fit-content;
+    display: none;
+    height: fit-content;
+    background-color: #0033ff;
+    border-radius: 3vh;
+    padding: 10px;
+    font-size: larger;
+    
+}
+#vis a{
+    background-color: #0033ff;
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    font-size: larger;
+    transition: all 1s ease-in-out;
+    border-radius: 3vh;
+
+}
+#vis a:hover{
+    background-color: #ff6a2a;
+    border-radius: 3vh;
+}
+#vis a:active{
+    background-color: #ff6a2a;
+    border-radius: 3vh;
+}
+main img{
+    width: 200px;
+    height: 200px;
+    margin: 20px;
+    border-radius: 3vh;
+    transition: all 0.5s ease-in-out;
+    object-fit: cover;
+}
+#top-products{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+#top-products img:hover{
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgb(20, 15, 125);
+}
+#product{
+    background-color: #222;
+    text-align: center;
+    margin: 20px;  
+    display: flex; 
+    transition: all 1s ease;
+    flex-direction: column;
+    border-radius: 20px;
+    height: 35vh;
+}
+button{
+    background-color: #0033ff;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.ishov{
+    display: none;
+    color: #00ff00;
+    font-weight: bold;
+    margin: 10px 0;
+}
+#Welcome{
+    display: flex;
+    background-color: #ff6a2a;
+    padding: 10px;
+    justify-content: space-between;
+    color: #333;
+    margin: 10px 0px;
+    border-radius: 3vh;
+    cursor: pointer;
+    text-align: left;
+}
+#Welcome span{
+    text-align: right;
+    width: fit-content;
+}
+main input{
+    outline: none;
+    border-radius: 3vh;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    text-align: center;
+    margin: 10px 0;
+}
+#btn {
+    background-image: url(imgs/menu.png);
+    background-size:cover;
+    background-position: center;
+    width: 2.5em;
+    height: 2em;
+}

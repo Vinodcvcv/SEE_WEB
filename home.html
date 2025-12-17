@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <strong id="Welcome">Hi , Vinod<span id="Settings">Settings</span></strong>
+    <div id="logo"><h2>Pluto<strong>Mart</strong></h2></div>
+    <main>
+        <nav><button onclick="nav()" id="btn">---</button><input id="search" placeholder="Search....">
+        <div id="vis">
+            <a href="">Food</a>
+            <a href="">Clothes</a>
+            <a href="">Electronics</a>
+            <a href="">Toys</a>
+            <a href="">Books</a>
+        </div> 
+        </nav>
+        <div id="top-products">
+            <div id="product"><img src="imgs/elec/phone.jpeg" alt=""><span>Smart Phone</span><button onclick="addtocart('smart phone','200')">Add to cart</button><span class="ishov">$200</span></div>
+            <div id="product"><img src="imgs/clothes/jacket.jpeg" alt=""><span>Jacket</span><button onclick="addtocart('jacket','50')">Add to cart</button><span class="ishov">$50</span></div>
+            <div id="product"><img src="imgs/clothes/download.jpg" alt=""><span>Pant Shirt</span><button onclick="addtocart('pant shirt','40')">Add to cart</button><span class="ishov">$40</span></div>
+            <div id="product"><img src="imgs/clothes/shirt.jpeg" alt=""><span>Shirt</span><button onclick="addtocart('shirt','35')">Add to cart</button><span class="ishov">$35</span></div>
+            <div id="product"><img src="imgs/toys/doll.jpeg" alt=""><span>Doll</span><button onclick="addtocart('teddy bear','15')">Add to cart</button><span class="ishov">$15</span></div>
+            <div id="product"><img src="imgs/books/novel.jpg" alt=""><span>Novel Book</span><button onclick="addtocart('novel book','10')">Add to cart</button><span class="ishov">$10</span></div>
+            <div id="product"><img src="imgs/food/biriyani.jpeg" alt=""><span>biriyani</span><button onclick="addtocart('pizza','25')">Add to cart</button><span class="ishov">$25</span></div>
+            <div id="product"><img src="imgs/food/masaladosa.jpeg" alt=""><span>Masala Dosa</span><button onclick="addtocart('masala dosa','15')">Add to cart</button><span class="ishov">$15</span></div>
+            <div id="product"><img src="imgs/food/samosa.jpeg" alt=""><span>Samosa</span><button onclick="addtocart('samosa','5')">Add to cart</button><span class="ishov">$5</span></div>
+            <div id="product"><img src="imgs/food/donut.jpeg" alt=""><span>Donut</span><button onclick="addtocart('donut','20')">Add to cart</button><span class="ishov">$20</span></div>
+
+    </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
