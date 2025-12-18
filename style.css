@@ -206,6 +206,7 @@ button{
     background-color: #ff6a2a;
     padding: 10px;
     justify-content: space-between;
+    justify-items: center;
     color: #333;
     margin: 10px 0px;
     border-radius: 3vh;
