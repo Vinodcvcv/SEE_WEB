@@ -3,11 +3,11 @@ var usersdata;
 var jud=localStorage.getItem("usersdata");
 if(!jud){
     usersdata={
-     users : ["admin",""],
-     password : ["admin",""],
-     emails : ["NA",""],
-     adress: ["NA",""],
-     bankdetails : ["NA",""],
+     users : ["admin"],
+     password : ["admin"],
+     emails : ["NA"],
+     adress: ["NA"],
+     bankdetails : ["NA"],
      isloggedin:false,
      i:""
 };
@@ -68,7 +68,10 @@ function tryreg(){
     usersdata.users.push(uname);
     usersdata.password.push(pwd);
     usersdata.emails.push(email);
+    usersdata.adress.push("");
+    usersdata.bankdetails.push("");
     alert("Registration Successful! You can now log in with your credentials.");
+    localStorage.setItem("usersdata",JSON.stringify(usersdata))
     login();
 }
 document.addEventListener("keydown",function(){
