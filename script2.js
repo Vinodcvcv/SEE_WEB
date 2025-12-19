@@ -111,7 +111,7 @@ function pay(){
     if(total){
         document.body.innerHTML=`<main>
         <h1>Pay $${total}</h1>
-        <img src="imgs/pay.jpg">
+        <img src="imgs/pay.jpg"><br>
         <input type="text" placeholder="UPI ID"><br>
         <input type="text" placeholder="Card Number">
         <input type="text" placeholder="Expiry Date">
@@ -199,3 +199,4 @@ function changepass(){
     localStorage.setItem("usersdata",JSON.stringify(usersdata));
     alert("Password changed !");
 }
+
