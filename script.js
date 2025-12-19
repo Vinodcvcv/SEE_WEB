@@ -15,12 +15,12 @@ if(!jud){
 else{
     usersdata=JSON.parse(jud);
 }
-
+if(!localStorage.getItem("cart")){
 var cart={lists:[],
     prices:[]};
 localStorage.setItem("cart",JSON.stringify(cart));
 
-
+}
 
 
 function signup(){
@@ -100,4 +100,5 @@ function back(){
 if(usersdata.isloggedin){
     back();
 }
+
 
