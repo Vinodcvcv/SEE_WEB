@@ -1,3 +1,5 @@
+
+
 const usersdata=JSON.parse(localStorage.getItem("usersdata"));
 var uname=usersdata.users[usersdata.i];
 
@@ -19,9 +21,9 @@ window.addEventListener("DOMContentLoaded",function(){
         }); 
     });
 });
+var cart=JSON.parse(localStorage.getItem("cart"));
 function addtocart(item,price){
     alert(item+" added to cart! Price: ₹"+price);
-    var cart=JSON.parse(localStorage.getItem("cart"));
     cart.lists.push(item);
     cart.prices.push(price);
     localStorage.setItem("cart",JSON.stringify(cart));
@@ -79,26 +81,29 @@ function Settings(){
     <h2>Adress</h2>
     <input type="text" placeholder="Enter your address" id="address"><button onclick="Adress()">Update</button>
     <h2>Link Bank account</h2>
-    <input type="text" placeholder="Enter your bank account number"><button onclick="bank()">Link</button>
+    <input type="number" placeholder="Enter your bank account number" id="bankac"><button onclick="bank()">Link</button>
     <h2>Change Password</h2>
-    <input type="password" placeholder="Enter new password">
+    <input type="password" placeholder="Enter Old password" id="old">
     <br>
-    <input type="password" placeholder="Confirm new password">
+    <input type="password" placeholder="Enter new password" id="new1">
+    <br>
+    <input type="password" placeholder="Confirm new password" id="new2">
     <br>
     <button onclick="changepass()">Change Password</button>
     <button onclick="logout()">Logout</button>
 </main>
 <script src="script.js"></script>`;
-document.getElementById("address").value=usersdata.adress[i];
+document.getElementById("address").value=usersdata.adress[usersdata.i];
+document.getElementById("bankac").value=usersdata.bankdetails[usersdata.i];
 }
 function pay(){
-    var addr=usersdata.adress[i];
+    var addr=usersdata.adress[usersdata.i];
     if(addr==="NA" || addr===""){
         alert("Please update your address in settings before proceeding to pay.");
         Settings();
         return;
     }
-    if(cart.lists.length===0){
+    if(cart.lists.length==0){
         alert("Your cart is empty! Please add items to your cart before proceeding to pay.");
         back();
         return;
@@ -106,6 +111,7 @@ function pay(){
     if(total){
         document.body.innerHTML=`<main>
         <h1>Pay $${total}</h1>
+        <img src="imgs/pay.jpg">
         <input type="text" placeholder="UPI ID"><br>
         <input type="text" placeholder="Card Number">
         <input type="text" placeholder="Expiry Date">
@@ -120,7 +126,7 @@ function pay(){
 
 window.addEventListener("DOMContentLoaded",function(){
     try{
-    document.getElementById("Welcome").innerHTML=`Hi, ${uname}<span id="Settings" onclick="Settings()">Settings</span><button onclick="viewcart()"> View Cart</button>`;
+    document.getElementById("Welcome").innerHTML=`Hi, ${uname}<span id="Settings" onclick="Settings()">Settings</span><span onclick="viewcart()"> View Cart</span>`;
 }
 catch{}
 });
@@ -141,12 +147,14 @@ function confirmorder(){
     alert("Payment Successful! Your order has been placed.");
     cart.lists=[];
     cart.prices=[];
+    localStorage.setItem("cart",JSON.stringify(cart));
     back();
 }
 
 function Adress(){
     var addr=document.getElementById("address").value;
-    usersdata.adress[i]=addr;
+    usersdata.adress[usersdata.i]=addr;
+    localStorage.setItem("usersdata",JSON.stringify(usersdata));
     alert("Address saved successfully!");
     document.getElementById("address").value=addr;
 }
@@ -163,4 +171,31 @@ function logout(){
     usersdata.isloggedin=false;
     localStorage.setItem("usersdata",JSON.stringify(usersdata));
     location.href="index.html";
+}
+function bank(){
+    var addr=document.getElementById("bankac").value;
+    usersdata.bankdetails[usersdata.i]=addr;
+    localStorage.setItem("usersdata",JSON.stringify(usersdata));
+    alert("Bank details saved successfully!");
+    document.getElementById("bankac").value=addr;
+}
+function changepass(){
+    var old=document.getElementById("old").value;
+    var new1=document.getElementById("new1").value;
+    var new2=document.getElementById("new2").value;
+    if(old!=usersdata.password[usersdata.i]){
+        alert("incorrect old password!");
+        return;
+    }
+    if(new1.length<6){
+        alert("password should have minimum 6 characters");
+        return;
+    }
+    if(new1!=new2){
+        alert("new password and confirm password should match!");
+        return;
+    }
+    usersdata.password[usersdata.i]=new1;
+    localStorage.setItem("usersdata",JSON.stringify(usersdata));
+    alert("Password changed !");
 }
