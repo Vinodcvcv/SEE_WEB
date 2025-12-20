@@ -3,24 +3,6 @@
 const usersdata=JSON.parse(localStorage.getItem("usersdata"));
 var uname=usersdata.users[usersdata.i];
 
-window.addEventListener("DOMContentLoaded",function(){
-    
-    var products = document.querySelectorAll("#product");
-    products.forEach(function(product) {
-        product.addEventListener("mouseover", function() {
-            var priceSpan = this.querySelector(".ishov");
-            if (priceSpan) {
-                priceSpan.style.display = "inline";
-            }
-        });
-        product.addEventListener("mouseout", function() {
-            var priceSpan = this.querySelector(".ishov");
-            if (priceSpan) {
-                priceSpan.style.display = "none";
-            }
-        }); 
-    });
-});
 var cart=JSON.parse(localStorage.getItem("cart"));
 function addtocart(item,price){
     alert(item+" added to cart! Price: ₹"+price);
@@ -85,7 +67,7 @@ function Settings(){
     <h2>Change Password</h2>
     <input type="password" placeholder="Enter Old password" id="old">
     <br>
-    <input type="password" placeholder="Enter new password" id="new1">
+    <input type="password" placeholder="Enter new password (min 8 characters)" id="new1">
     <br>
     <input type="password" placeholder="Confirm new password" id="new2">
     <br>
@@ -132,16 +114,34 @@ catch{}
 });
 
 function food(){
-    document.body.innerHTML=`
-    <button onclick="back()"> &#8592;back</button>
-    <main>
-    <div id="top-products">
-     <div id="product"><img src="imgs/food/masaladosa.jpeg" alt=""><span>Masala Dosa</span><button onclick="addtocart('masala dosa','15')">Add to cart</button><span class="ishov">$15</span></div>
-     <div id="product"><img src="imgs/food/biriyani.jpeg" alt=""><span>Biriyani</span><button onclick="addtocart('Biriyani','50')">Add to cart</button><span class="ishov">$50</span></div>
-    </div>
-    </main>
-    <script src="script.js"></script>
-    `;
+    filterProducts('food');
+}
+function clothes(){
+    filterProducts('clothes');
+}
+function electronics(){
+    filterProducts('electronics');
+}
+function toys(){
+    filterProducts('toys');
+}
+function books(){
+    filterProducts('books');
+}
+
+function filterProducts(category) {
+    const products = document.querySelectorAll('.product');
+    products.forEach(product => {
+        if (category === 'all' || product.getAttribute('data-category') === category) {
+            product.style.display = '';
+        } else {
+            product.style.display = 'none';
+        }
+    });
+}
+
+function showAll() {
+    filterProducts('all');
 }
 function confirmorder(){
     alert("Payment Successful! Your order has been placed.");
@@ -187,8 +187,8 @@ function changepass(){
         alert("incorrect old password!");
         return;
     }
-    if(new1.length<6){
-        alert("password should have minimum 6 characters");
+    if(new1.length<8){
+        alert("password should have minimum 8 characters");
         return;
     }
     if(new1!=new2){

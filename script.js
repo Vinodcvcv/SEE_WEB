@@ -3,11 +3,11 @@ var usersdata;
 var jud=localStorage.getItem("usersdata");
 if(!jud){
     usersdata={
-     users : ["admin"],
-     password : ["admin"],
-     emails : ["NA"],
-     adress: ["NA"],
-     bankdetails : ["NA"],
+     users : [],
+     password : [],
+     emails : [],
+     adress: [],
+     bankdetails : [],
      isloggedin:false,
      i:""
 };
@@ -27,7 +27,7 @@ function signup(){
  var f=document.querySelector("form");
  f.innerHTML=`<h1>Sign Up</h1>
  <input type="text" id="name" placeholder="Username" required>
- <input type="password" id="password" placeholder="Password" required>
+ <input type="password" id="password" placeholder="Password (min 8 characters)" required>
  <input type="email" id="email" placeholder="Email" required>
  <input type="button" value="Sign Up" onclick="tryreg()">
  <div>already have an account? <strong onclick="login()">Login</strong></div>`;
@@ -61,6 +61,20 @@ function tryreg(){
     var uname=document.getElementById("name").value;
     var pwd=document.getElementById("password").value;
     var email=document.getElementById("email").value;
+    
+    // Email validation
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        alert("Please enter a valid email address.");
+        return;
+    }
+    
+    // Password length validation
+    if (pwd.length < 8) {
+        alert("Password must be at least 8 characters long.");
+        return;
+    }
+    
     if(usersdata.users.indexOf(uname)!=-1){
         alert("Username already exists! Please choose a different username.");
         return;
