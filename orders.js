@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded",function(){
             } else if(orders.payment[i]){
                 status = "Order Placed";
             }
-            var dateStr = orders.date[i] ? new Date(orders.date[i]).toLocaleString() : "Unknown";
+            var dateStr = (orders.date[i]) ? orders.date[i]: "Unknown";
             x += `<div class="order-item">
                 <h2>${orders.items[i]}</h2>
                 <p><strong>Date:</strong> ${dateStr}</p>

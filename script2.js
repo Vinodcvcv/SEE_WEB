@@ -158,7 +158,7 @@ function confirmorder(){
     }
     while(cart.lists.length){
         orders.items.push(cart.lists.pop());
-        orders.date.push(new Date().toLocaleString);
+        orders.date.push(new Date().toLocaleString());
         orders.payment.push(true);
         orders.shipped.push(false);
         orders.outfordel.push(false);
