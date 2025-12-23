@@ -106,12 +106,9 @@ function pay(){
     }
 }
 
-window.addEventListener("DOMContentLoaded",function(){
-    try{
-    document.getElementById("Welcome").innerHTML=`Hi, ${uname}<span id="Settings" onclick="Settings()">Settings</span><span onclick="viewcart()"> View Cart</span>`;
-}
-catch{}
-});
+
+document.getElementById("Welcome").innerHTML=`Hi, ${uname}<span onclick='location.href="orders.html"'>Orders</span><span id="Settings" onclick="Settings()">Settings</span><span onclick="viewcart()"> View Cart</span>`;
+
 
 function food(){
     filterProducts('food');
@@ -145,8 +142,30 @@ function showAll() {
 }
 function confirmorder(){
     alert("Payment Successful! Your order has been placed.");
-    cart.lists=[];
-    cart.prices=[];
+    var jo=localStorage.getItem("orders");
+    var orders;
+    if(!jo){
+    orders={
+        items:[],
+        date:[],
+        payment:[],
+        shipped:[],
+        outfordel:[],
+        deled:[]
+    };}
+    else{
+        orders=JSON.parse(jo);
+    }
+    while(cart.lists.length){
+        orders.items.push(cart.lists.pop());
+        orders.date.push(new Date().toLocaleString);
+        orders.payment.push(true);
+        orders.shipped.push(false);
+        orders.outfordel.push(false);
+        orders.deled.push(false);
+        cart.prices.pop();
+    }
+    localStorage.setItem("orders",JSON.stringify(orders));
     localStorage.setItem("cart",JSON.stringify(cart));
     back();
 }
@@ -199,5 +218,4 @@ function changepass(){
     localStorage.setItem("usersdata",JSON.stringify(usersdata));
     alert("Password changed !");
 }
-
 

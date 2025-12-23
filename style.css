@@ -403,11 +403,10 @@ button:hover {
     color: var(--accent);
     font-weight: 600;
     transition: all 0.3s ease;
-}
-
-#Welcome span#Settings {
     margin-left: 1rem;
 }
+
+
 
 #Welcome span:hover {
     color: var(--accent-secondary);
@@ -454,4 +453,24 @@ main input::placeholder {
 #btn:hover {
     transform: scale(1.1);
     box-shadow: var(--shadow-hover);
+}
+
+/* Orders page styles */
+.order-item {
+    background: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 1rem;
+    border: 1px solid var(--border);
+}
+
+.order-item h2 {
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+}
+
+.order-item p {
+    margin: 0.5rem 0;
+    font-weight: 500;
 }
