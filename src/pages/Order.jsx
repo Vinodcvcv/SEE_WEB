@@ -18,7 +18,7 @@ export default function Order({ user }) {
         const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
         const response = await fetch(`${apiUrl}/api/orders?email=${user.email}`);
         const data = await response.json();
-        
+
         if (!response.ok) throw new Error(data.error || 'Failed to fetch orders');
         setOrders(data);
       } catch (err) {
@@ -69,13 +69,25 @@ export default function Order({ user }) {
           {orders.map((order, i) => (
             <div key={i} className="glass" style={{ padding: '1.5rem' }}>
               <div className="flex-between" style={{ borderBottom: '1px solid var(--glass-border)', paddingBottom: '1rem', marginBottom: '1rem' }}>
-                <span style={{ fontWeight: '600', fontSize: '1.1rem' }}>Order #{order.id}</span>
+                <span style={{ fontWeight: '600', fontSize: '1.1rem' }}>Status: <p style={{ fontWeight: '400', fontSize: '1.1rem', color: 'var(--secondary)', display: 'inline-block' }}>{order.status}</p></span>
                 <span className="text-muted" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                  <Clock size={16} /> Product ID: {order.p_id}
+                  <Clock size={16} /> Delevery Date: <p style={{ fontWeight: '400', fontSize: '1.1rem', color: 'var(--secondary)', display: 'inline-block' }}>{order.d_date}</p>
                 </span>
               </div>
-              <div>
-                <p className="product-desc" style={{ margin: 0 }}>This order contains a physical/digital asset link to product #{order.p_id}.</p>
+              <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
+                {order.products && order.products.p_image_url ? (
+                  <img src={order.products.p_image_url} alt={order.products.p_name || 'Product'} style={{ width: '80px', height: '80px', objectFit: 'cover', borderRadius: '8px' }} />
+                ) : (
+                  <div style={{ width: '80px', height: '80px', background: 'rgba(255, 255, 255, 0.05)', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <Package size={32} color="var(--text-muted)" />
+                  </div>
+                )}
+                <div>
+                  <h3 style={{ fontSize: '1.1rem', marginBottom: '0.25rem' }}>
+                    {order.products ? order.products.p_name : `Product #${order.p_id}`}
+                  </h3>
+                  <p className="product-desc" style={{ margin: 0 }}>{order.products ? order.products.p_disc : ""}</p>
+                </div>
               </div>
             </div>
           ))}
