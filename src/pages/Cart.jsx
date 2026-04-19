@@ -57,7 +57,7 @@ export default function Cart({ cart, removeFromCart, clearCart, user }) {
           </Link>
         </div>
       ) : (
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 350px', gap: '2rem' }}>
+        <div className="cart-layout">
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             {cart.map((item, index) => (
               <div key={index} className="glass flex-between" style={{ padding: '1rem', alignItems: 'center' }}>
@@ -83,7 +83,7 @@ export default function Cart({ cart, removeFromCart, clearCart, user }) {
             ))}
           </div>
           
-          <div className="glass" style={{ padding: '2rem', height: 'fit-content', position: 'sticky', top: '100px' }}>
+          <div className="glass cart-sidebar" style={{ padding: '2rem' }}>
             <h2 style={{ marginBottom: '1.5rem', borderBottom: '1px solid var(--glass-border)', paddingBottom: '1rem' }}>Order Summary</h2>
             <div className="flex-between" style={{ marginBottom: '1rem' }}>
               <span className="product-desc" style={{ margin: 0 }}>Items ({cart.length})</span>

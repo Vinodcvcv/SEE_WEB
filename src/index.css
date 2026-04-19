@@ -264,3 +264,118 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: center;
   font-weight: bold;
 }
+
+/* Responsive Utilities & Layouts */
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-layout {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 2rem;
+}
+
+.cart-sidebar {
+  position: sticky;
+  top: 100px;
+  height: fit-content;
+}
+
+.nav-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-main);
+  cursor: pointer;
+  padding: 0.5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.hidden-mobile {
+  display: inline;
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+  .hero {
+    padding: 4rem 1rem 3rem;
+  }
+  .hero p {
+    font-size: 1.1rem;
+    padding: 0 1rem;
+  }
+  .product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem;
+  }
+  .product-image {
+    height: 180px;
+    margin-bottom: 1rem;
+  }
+  .product-title {
+    font-size: 1.1rem;
+  }
+  
+  .cart-layout {
+    grid-template-columns: 1fr !important;
+  }
+  .cart-sidebar {
+    position: static !important;
+  }
+  
+  .container {
+    padding: 0 1.5rem;
+  }
+  .navbar .nav-container {
+    flex-wrap: wrap;
+  }
+  .nav-menu-toggle {
+    display: flex !important;
+  }
+  .nav-links {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    padding: 1rem 0;
+    text-align: center;
+    gap: 1.5rem;
+    order: 3;
+    margin-top: 1rem;
+    border-top: 1px solid var(--glass-border);
+  }
+  .nav-links.active {
+    display: flex;
+  }
+  .nav-right-actions {
+    gap: 0.5rem !important;
+  }
+  .nav-right-actions .btn {
+    padding: 0.4rem 0.6rem !important;
+    font-size: 0.8rem !important;
+  }
+  .logo {
+    font-size: 1.25rem;
+  }
+  .brand-text {
+    display: none;
+  }
+  .hidden-mobile {
+    display: none !important;
+  }
+  .flex-between {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .nav-links a {
+    font-size: 1.1rem;
+    padding: 0.5rem;
+    display: block;
+  }
+}
+
