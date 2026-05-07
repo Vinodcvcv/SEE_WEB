@@ -13,7 +13,7 @@ function App() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    // Check if user is already logged in
+    
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       setUser(JSON.parse(storedUser));

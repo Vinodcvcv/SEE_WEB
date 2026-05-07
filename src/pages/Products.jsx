@@ -9,7 +9,6 @@ export default function Products({ addToCart }) {
   const filters = ['All', 'T-Shirts', 'Pants', 'Shoes', 'Accessories', 'Outfits'];
 
   useEffect(() => {
-    // Fetch products from backend
     const apiUrl = import.meta.env.VITE_API_URL;
     fetch(`${apiUrl}/api/products`)
       .then(res => res.json())
@@ -21,7 +20,7 @@ export default function Products({ addToCart }) {
         console.error('Error fetching products:', err);
         setLoading(false);
       });
-  }, []);// 
+  }, []);
 
   return (
     <div className="container animate-fade-in" style={{ padding: '4rem 2rem' }}>
@@ -32,14 +31,14 @@ export default function Products({ addToCart }) {
         Explore our premium selection of digital and physical assets.
       </p>
 
-      {/* Filter Options */}
+      {}
       <div style={{
         display: 'flex',
         gap: '1rem',
         marginBottom: '2.5rem',
         overflowX: 'auto',
         paddingBottom: '0.5rem',
-        scrollbarWidth: 'none', /* Firefox */
+        scrollbarWidth: 'none', 
       }} className="hide-scrollbar">
         {filters.map(filter => (
           <button
@@ -70,7 +69,7 @@ export default function Products({ addToCart }) {
           {products
             .filter(product => {
               if (activeFilter === 'All') return true;
-              // Assuming your DB uses p_category or category column
+              
               const categoryMatch = product.cat === activeFilter || product.category === activeFilter;
               return categoryMatch;
             })

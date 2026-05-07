@@ -36,7 +36,6 @@ export default function Login({ setUser }) {
         throw new Error(data.error || 'Authentication failed');
       }
 
-      // Success
       localStorage.setItem('user', JSON.stringify(data.user));
       if (setUser) setUser(data.user);
       navigate('/');
