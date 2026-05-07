@@ -7,33 +7,12 @@ export default function Cart({ cart, removeFromCart, clearCart, user }) {
   const [loading, setLoading] = useState(false);
   const [errorMSG, setErrorMSG] = useState('');
 
-  const handleCheckout = async () => {
+  const handleCheckout = () => {
     if (!user) {
-      setErrorMSG('You must be logged in to place an order.');
+      setErrorMSG('You must be logged in to proceed to checkout.');
       return;
     }
-    
-    setLoading(true);
-    setErrorMSG('');
-    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
-    
-    try {
-      const response = await fetch(`${apiUrl}/api/orders`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: user.email, items: cart })
-      });
-      
-      const data = await response.json();
-      if (!response.ok) throw new Error(data.error || 'Failed to place order');
-      
-      clearCart();
-      navigate('/orders');
-    } catch (err) {
-      setErrorMSG(err.message);
-    } finally {
-      setLoading(false);
-    }
+    navigate('/payment');
   };
   const total = cart.reduce((sum, item) => sum + item.price, 0);
 

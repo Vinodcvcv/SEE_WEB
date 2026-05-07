@@ -43,6 +43,43 @@ export default function Order({ user }) {
     );
   }
 
+  const renderOrderCard = (order, i) => (
+    <div key={i} className="glass" style={{ padding: '1.5rem' }}>
+      <div className="flex-between" style={{ borderBottom: '1px solid var(--glass-border)', paddingBottom: '1rem', marginBottom: '1rem' }}>
+        <span style={{ fontWeight: '600', fontSize: '1.1rem' }}>
+          Status:
+          <span style={{
+            fontWeight: '600',
+            fontSize: '1.1rem',
+            marginLeft: '0.5rem',
+            color: order.isdelivered ? '#00ff88' : 'var(--secondary)',
+            textShadow: order.isdelivered ? '0 0 10px rgba(0, 255, 136, 0.5)' : 'none'
+          }}>
+            {order.isdelivered ? 'Delivered' : order.status}
+          </span>
+        </span>
+        <span className="text-muted" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+          <Clock size={16} /> Delivery Date: <p style={{ fontWeight: '400', fontSize: '1.1rem', color: 'var(--secondary)', display: 'inline-block', margin: 0 }}>{order.d_date}</p>
+        </span>
+      </div>
+      <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
+        {order.products && order.products.p_image_url ? (
+          <img src={order.products.p_image_url} alt={order.products.p_name || 'Product'} style={{ width: '80px', height: '80px', objectFit: 'cover', borderRadius: '8px' }} />
+        ) : (
+          <div style={{ width: '80px', height: '80px', background: 'rgba(255, 255, 255, 0.05)', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Package size={32} color="var(--text-muted)" />
+          </div>
+        )}
+        <div>
+          <h3 style={{ fontSize: '1.1rem', marginBottom: '0.25rem' }}>
+            {order.products ? order.products.p_name : `Product #${order.p_id}`}
+          </h3>
+          <p className="product-desc" style={{ margin: 0 }}>{order.products ? order.products.p_disc : ""}</p>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <div className="container animate-fade-in" style={{ padding: '4rem 2rem' }}>
       <h1 className="text-gradient" style={{ marginBottom: '2rem' }}>Order History</h1>
@@ -65,32 +102,24 @@ export default function Order({ user }) {
           <Link to="/products" className="btn btn-primary">Start Shopping</Link>
         </div>
       ) : (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-          {orders.map((order, i) => (
-            <div key={i} className="glass" style={{ padding: '1.5rem' }}>
-              <div className="flex-between" style={{ borderBottom: '1px solid var(--glass-border)', paddingBottom: '1rem', marginBottom: '1rem' }}>
-                <span style={{ fontWeight: '600', fontSize: '1.1rem' }}>Status: <p style={{ fontWeight: '400', fontSize: '1.1rem', color: 'var(--secondary)', display: 'inline-block' }}>{order.status}</p></span>
-                <span className="text-muted" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                  <Clock size={16} /> Delevery Date: <p style={{ fontWeight: '400', fontSize: '1.1rem', color: 'var(--secondary)', display: 'inline-block' }}>{order.d_date}</p>
-                </span>
-              </div>
-              <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
-                {order.products && order.products.p_image_url ? (
-                  <img src={order.products.p_image_url} alt={order.products.p_name || 'Product'} style={{ width: '80px', height: '80px', objectFit: 'cover', borderRadius: '8px' }} />
-                ) : (
-                  <div style={{ width: '80px', height: '80px', background: 'rgba(255, 255, 255, 0.05)', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <Package size={32} color="var(--text-muted)" />
-                  </div>
-                )}
-                <div>
-                  <h3 style={{ fontSize: '1.1rem', marginBottom: '0.25rem' }}>
-                    {order.products ? order.products.p_name : `Product #${order.p_id}`}
-                  </h3>
-                  <p className="product-desc" style={{ margin: 0 }}>{order.products ? order.products.p_disc : ""}</p>
-                </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
+          {orders.filter(o => !o.isdelivered).length > 0 && (
+            <div>
+              <h2 style={{ marginBottom: '1.5rem', fontSize: '1.5rem' }}>Active Orders</h2>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                {orders.filter(o => !o.isdelivered).map((order, i) => renderOrderCard(order, i))}
               </div>
             </div>
-          ))}
+          )}
+
+          {orders.filter(o => o.isdelivered).length > 0 && (
+            <div>
+              <h2 style={{ marginBottom: '1.5rem', fontSize: '1.5rem' }}>Delivered Orders</h2>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                {orders.filter(o => o.isdelivered).map((order, i) => renderOrderCard(order, i))}
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>

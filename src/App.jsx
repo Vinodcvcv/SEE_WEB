@@ -6,6 +6,7 @@ import Products from './pages/Products';
 import Cart from './pages/Cart';
 import Order from './pages/Order';
 import Login from './pages/Login';
+import Payment from './pages/Payment';
 import './index.css';
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
           <Route path="/cart" element={<Cart cart={cart} removeFromCart={removeFromCart} clearCart={clearCart} user={user} />} />
           <Route path="/orders" element={<Order user={user} />} />
           <Route path="/login" element={<Login setUser={setUser} />} />
+          <Route path="/payment" element={<Payment cart={cart} clearCart={clearCart} user={user} />} />
         </Routes>
       </div>
     </Router>
