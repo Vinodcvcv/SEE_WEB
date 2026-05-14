@@ -6,7 +6,7 @@ export default function Products({ addToCart }) {
   const [loading, setLoading] = useState(true);
   const [activeFilter, setActiveFilter] = useState('All');
 
-  const filters = ['All', 'Apparel', 'Essentials', 'Books', 'Gadgets', 'Accessories'];
+  const filters = ['All', 'Apparel', 'Books', 'Electronics', 'Accessories', 'Furniture'];
 
   useEffect(() => {
     const apiUrl = import.meta.env.VITE_API_URL;
